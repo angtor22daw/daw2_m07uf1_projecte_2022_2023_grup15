@@ -15,6 +15,7 @@
         <?php
 			date_default_timezone_set('Europe/Andorra');
 			echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";
+			header("refresh: 10; url=../login.php");
         ?>
         </label>
 	</body>

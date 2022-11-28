@@ -12,13 +12,13 @@
 			} else {
 				header("Location: menu_basic.php");		
 			}
+
 						
 		}		
 		if (!isset($_SESSION['usuari'])){
-			header("Location: error_login.php");
+			header("Location: ./errors/error_login.php");
 		}					
 	}		
-	
 ?>
 <!DOCTYPE html>
 <html lang="ca">
@@ -47,7 +47,7 @@
 						</div>
 
 						<div class="form-outline mb-4">
-							<input type="password" name="ctsnya" id="typePasswordX-2" class="form-control form-control-lg" placeholder="Contrasenya"/>
+							<input type="password" name="password" id="typePasswordX-2" class="form-control form-control-lg" placeholder="Contrasenya"/>
 						</div>
 
 						<button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>

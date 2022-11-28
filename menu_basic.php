@@ -1,10 +1,10 @@
 <?php
 	session_start();
 	if (!isset($_SESSION['usuari'])){
-		header("Location: error_acces.php");
+		header("Location: ./errors/error_acces.php");
 	}
 	if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
-		header("Location: logout_expira_sessio.php");
+		header("Location: ./errors/logout_expira_sessio.php");
 	}	
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,12 @@
         <?php
 			echo "<p>Usuari utilitzant l'agenda: ".$_SESSION['usuari']."</p>";
 			date_default_timezone_set('Europe/Andorra');
-			echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";	
+			echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";
+			// HAY QUE MOSTRAR EL ROL DEL USUARIO
+			// $autoritzat=fAutoritzacio($_SESSION['usuari']);
+			// if(!$autoritzat){
+			// 	header("Location: error_autoritzacio.php");
+			// }
         ?>
         </label>		
 	</body>

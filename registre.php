@@ -45,11 +45,11 @@
 			<input type="submit" value="Enregistra el nou usuari"/>
 		</form>
 		<p><a href="menu_admin.php">Torna al menú</a></p>
-		<label class="diahora">
+		<!-- <label class="diahora"> -->
 		<?php
 			echo "<p>Usuari utilitzant l'agenda: ".$_SESSION['usuari']."</p>";
-			date_default_timezone_set('Europe/Andorra');
-			echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";
+			// date_default_timezone_set('Europe/Andorra');
+			// echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";
 			if (isset($_SESSION['afegit'])){
 				if ($_SESSION['afegit']) echo "<p style='color:red'>L'Usuari ha estat registrat correctament</p>";
 				else{

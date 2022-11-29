@@ -24,14 +24,19 @@
         <p><a href="logout.php">Finalitza la sessió</a></p>
         <label class="diahora"> 
         <?php
+			require('./biblioteca.php');
+
 			echo "<p>Usuari utilitzant l'agenda: ".$_SESSION['usuari']."</p>";
-			date_default_timezone_set('Europe/Andorra');
-			echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";
-			// HAY QUE MOSTRAR EL ROL DEL USUARIO
-			// $autoritzat=fAutoritzacio($_SESSION['usuari']);
-			// if(!$autoritzat){
-			// 	header("Location: error_autoritzacio.php");
-			// }
+			// date_default_timezone_set('Europe/Andorra');
+			// echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";
+		
+			// Verificar tipus d'usuari (Basic/Administrador)
+			$autoritzat=fAutoritzacio($_SESSION['usuari']);
+			if(!$autoritzat){
+				echo "<p> Tipus d'usuari: Basic";
+			}else{
+				echo "<p> Tipus d'usuari: Administrador";
+			}
         ?>
         </label>		
 	</body>

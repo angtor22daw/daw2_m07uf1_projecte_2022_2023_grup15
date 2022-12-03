@@ -6,7 +6,8 @@
 	define('ADMIN','1');
 	define('USR','0');
 	define('FITXER_USUARIS','./usuaris/usuaris');
-
+	define('FITXER_ALUMNES','./alumnes/alumnes');
+	
 	
 	function fLlegeixFitxer($nomFitxer){
 		if ($fp=fopen($nomFitxer,"r")) {
@@ -69,10 +70,19 @@
 	function fCreaTaula($llista,$tipus){
 		foreach ($llista as $entrada) {
 			$dadesEntrada = explode(":", $entrada);
-			$nom = $dadesEntrada[0];
+			$id = $dadesEntrada[0];
+			$nom = $dadesEntrada[1];
+			$cognom1 = $dadesEntrada[2];
+			$cognom2 = $dadesEntrada[3];
+			$notaM01 = $dadesEntrada[4];
+			$notaM02 = $dadesEntrada[5];
+			$notaM03 = $dadesEntrada[6];
+			$notaM04 = $dadesEntrada[7];
+			$notaM11 = $dadesEntrada[8];
+			$notaM12 = $dadesEntrada[9];
 			if ($tipus=="COMU"){
-				$tlf = $dadesEntrada[1]; 
-				echo "<tr><td>$nom</td><td>$tlf</td></tr>";
+				
+				echo "<tr><td>$id</td><td>$nom</td><td>$cognom1</td><td>$cognom2</td><td>$notaM01</td><td>$notaM02</td><td>$notaM03</td><td>$notaM04</td><td>$notaM11</td><td>$notaM12</td></tr>";
 			}
 			else{
 				$carrec = $dadesEntrada[1];

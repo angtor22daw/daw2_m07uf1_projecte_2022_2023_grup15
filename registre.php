@@ -24,7 +24,6 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Visualitzador de l'agenda</title>
-		<link rel="stylesheet" href="agenda.css">
 	</head>
 	<body>
 		<h3><b>Registre d'usuaris del visualitzador de l'agenda</b></h3>

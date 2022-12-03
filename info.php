@@ -3,7 +3,6 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Visualitzador de l'agenda</title>
-		<link rel="stylesheet" href="agenda.css">
 	</head>
 	<body>
 		<h2><b>Informació sobre el visualitzador de l'agenda</b></h2>

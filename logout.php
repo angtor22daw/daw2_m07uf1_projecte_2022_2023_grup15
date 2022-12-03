@@ -11,9 +11,18 @@
 		header("Location: index.php");
 	}
 	else{
+		require('./biblioteca.php');	
 		session_start();
 		if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
 			header("Location: logout_expira_sessio.php");
+		}
+		if ((isset($_POST['resp'])) && ($_POST['resp']=="n")){
+			$autoritzat=fAutoritzacio($_SESSION['usuari']);
+			if(!$autoritzat){
+				header("Location: menu_basic.php");
+			}else{
+				header("Location: menu_admin.php");
+			}
 		}
 	}	
 ?>
@@ -21,8 +30,7 @@
 <html lang="ca">
 	<head>
 		<meta charset="utf-8">
-		<title>Visualitzador de l'agenda</title>
-		<link rel="stylesheet" href="agenda.css">
+		<title>Tancar sessió</title>
 	</head>
 	<body>
 		<h3><b>Finalització de sessió del visualitzador de l'agenda</b></h3>
@@ -33,15 +41,5 @@
 			<br>
 			<input type="submit" value="Valida" />
 		</form>
-		<p><a href="menu.php">Torna al menú  de l'agenda</a></p>
-		<label class="diahora"> 
-        <?php
-			if ((isset($_POST['resp'])) && ($_POST['resp']=="n")){
-				header("Location: menu.php");
-			}
-			date_default_timezone_set('Europe/Andorra');
-			echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";						
-        ?>
-         <label class="diahora"> 
 	</body>
 </html>  

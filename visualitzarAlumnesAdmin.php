@@ -12,7 +12,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Visualitzador de l'agenda</title>
-        <link rel="stylesheet" href="css/estils.css">
+		<link rel="stylesheet" href="css/estils.css">
 	</head>
 	<body>
 		<h3><b>Llistat de tots els alumnes</b></h3>

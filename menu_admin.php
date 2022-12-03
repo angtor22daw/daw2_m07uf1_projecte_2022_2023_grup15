@@ -35,9 +35,9 @@
 			// Verificar tipus d'usuari (Basic/Administrador)
 			$autoritzat=fAutoritzacio($_SESSION['usuari']);
 			if(!$autoritzat){
-				echo "<p> Tipus d'usuari: Basic";
+				echo "<p> Tipus d'usuari: Basic </p>";
 			}else{
-				echo "<p> Tipus d'usuari: Administrador";
+				echo "<p> Tipus d'usuari: Administrador </p>";
 			}
         ?>
         </label>		

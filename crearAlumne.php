@@ -15,17 +15,17 @@
 	}
 
     // FUNCIO QUE ENVIE LES DADES DEL FORM
-	if ((isset($_POST['nom_nou_alumne'])) && (isset($_POST['cts_nou_usuari'])) && (isset($_POST['tipus_nou_usuari']))){		
-		$afegit=fActualitzaUsuaris($_POST['nom_nou_usuari'],$_POST['cts_nou_usuari'],$_POST['tipus_nou_usuari']);
-		$_SESSION['afegit']=$afegit;
+	if ((isset($_POST['nom_nou_alumne'])) && (isset($_POST['primerCognom_nou_alumne'])) && (isset($_POST['segonCognom_nou_alumne'])) && (isset($_POST['nota_M01'])) && (isset($_POST['nota_M02'])) && (isset($_POST['nota_M03'])) && (isset($_POST['nota_M04'])) && (isset($_POST['nota_M11'])) && (isset($_POST['nota_M12']))){		
+		$afegitAlumne=fActualitzaAlumnes($_POST['nom_nou_alumne'],$_POST['primerCognom_nou_alumne'],$_POST['segonCognom_nou_alumne'],$_POST['nota_M01'],$_POST['nota_M02'],$_POST['nota_M03'],$_POST['nota_M04'],$_POST['nota_M11'],$_POST['nota_M12']);
+		$_SESSION['afegitAlumne']=$afegitAlumne;
 		header("refresh: 5; url=menu_admin.php"); // Passats 5 segons el navegador demana menu_admin.php i es torna a menu_admin.php.
-	}			
+	}		
 ?>
 <!DOCTYPE html>
 <html lang="ca">
 	<head>
 		<meta charset="utf-8">
-		<title>Visualitzador de l'agenda</title>
+		<title>Crear Alumnes</title>
 	</head>
 	<body>
 		<h3><b>Registre de nous Alumnes</b></h3>
@@ -37,11 +37,11 @@
 			</p>
             <p>
 				<label>Primer cognom:</label> 
-				<input type="text" name="1rcognom_nou_alumne" required>
+				<input type="text" name="primerCognom_nou_alumne" required>
 			</p>
             <p>
 				<label>Segon cognom:</label> 
-				<input type="text" name="2ncognom_nou_alumne" required>
+				<input type="text" name="segonCognom_nou_alumne" required>
 			</p>
             <p>
 				<label>Nota del M01:</label> 
@@ -60,17 +60,27 @@
 				<input type="text" name="nota_M04" required>
 			</p>
             <p>
-				<label>Nota del M011:</label> 
-				<input type="text" name="nota_M011" required>
+				<label>Nota del M11:</label> 
+				<input type="text" name="nota_M11" required>
 			</p>
             <p>
-				<label>Nota del M012:</label> 
-				<input type="text" name="nota_M012" required>
+				<label>Nota del M12:</label> 
+				<input type="text" name="nota_M12" required>
 			</p>
+			<input type="submit" value="Enregistra el nou alumne"/>
 		</form>
 		<p><a href="menu_admin.php">Torna al menú</a></p>
 		<!-- <label class="diahora"> -->
 		<?php
+			if (isset($_SESSION['afegitAlumne'])){
+				if ($_SESSION['afegitAlumne']) echo "<p style='color:red'>L'Usuari ha estat registrat correctament</p>";
+				else{
+					echo "L'Usuari no ha estat registrat<br>";
+					echo "Comprova si hi ha algún problema del sistema per poder enregistrar nous usuaris<br>";
+				}
+				unset($_SESSION['afegitAlumne']);
+			}
+			// NOM I TIPUS D USUARI 
 			echo "<p>Usuari utilitzant l'agenda: ".$_SESSION['usuari']."</p>";
             $autoritzat=fAutoritzacio($_SESSION['usuari']);
 			if(!$autoritzat){

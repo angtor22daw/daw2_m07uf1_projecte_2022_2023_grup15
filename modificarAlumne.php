@@ -1,10 +1,38 @@
 <?php
+	require("biblioteca.php");
 	session_start();
 	if (!isset($_SESSION['usuari'])){
-		header("Location: errors/error_acces.php");
+		header("Location: ./errors/error_acces.php");
 	}
 	if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
-		header("Location: errors/logout_expira_sessio.php");
+		header("Location: ./errors/logout_expira_sessio.php");
+	}
+    if ((isset($_POST['ID_alumne'])) && (isset($_POST['moduls'])) && (isset($_POST['novaNota']))){	
+        // $modul = $_POST['moduls'];
+
+        // switch($modul){
+        //     case "M01":
+        //         $modul = "modul1";
+        //         break;
+        //     case "M02":
+        //         $modul = "modul2";
+        //         break;
+        //     case "M03":
+        //         $modul = "modul3";
+        //         break;
+        //     case "M04":
+        //         $modul = "modul4";
+        //         break;
+        //     case "M11":
+        //         $modul = "modul11";
+        //         break;
+        //     case "M12":
+        //         $modul = "modul12";
+        //         break;
+        // }
+		$modificat=fModificarAlumne($_POST['ID_alumne'],$_POST['moduls'],$_POST['novaNota']);
+		$_SESSION['modificat']=$modificat;
+		header("refresh: 5; url=menu_admin.php"); // Passats 5 segons el navegador demana menu_admin.php i es torna a menu_admin.php.
 	}		
 ?>
 <!DOCTYPE html>
@@ -18,10 +46,10 @@
 		<h3><b>Modificació de notes dels alumnes</b></h3>
 
         <form action="modificarAlumne.php" method="POST">
-            <label for="id">ID del alumne</label>
-            <input type="text" name="id" id="id" required><br><br>
-            <label for="nota">Selecciona el modul que vols modificar la nota: </label>
-            <select name="moduls" id="moduls">
+            <p>ID del alumne</p>
+            <input type="text" name="ID_alumne" required><br><br>
+            <p>Selecciona el modul que vols modificar la nota: </p>
+            <select name="moduls">
                 <option value="M01">M01</option>
                 <option value="M02">M02</option>
                 <option value="M03">M03</option>
@@ -33,14 +61,14 @@
             <!-- <label for="nota">Nota</label>
             <input type="text" name="nota" id="nota" required><br> -->
             <br>
-            <label for="nuevaNota">Nota Modificada</label>
-            <input type="text" name="nuevaNota" id="nuevaNota" required><br><br>
-            <input type="submit" value="Modificar">
+            <p>Nota Modificada</p>
+            <input type="text" name="novaNota" required><br><br>
+            <input type="submit" value="Modificar Nota">
         </form>
 		<p><a href="menu_admin.php">Torna al menú</a></p>
 
         <?php
-			require('./biblioteca.php');	
+			// require('./biblioteca.php');	
 			echo "<p>Usuari utilitzant l'agenda: ".$_SESSION['usuari']."</p>";
 
 			$autoritzat=fAutoritzacio($_SESSION['usuari']);
@@ -50,34 +78,14 @@
 				echo "<p> Tipus d'usuari: Administrador";
 			}
 
-            if(isset($_POST['id']) && isset($_POST['moduls']) && isset($_POST['nuevaNota'])){
-                $id = $_POST['id'];
-                $modul = $_POST['moduls'];
-                $nota = $_POST['nuevaNota'];
-
-                switch($modul){
-                    case "M01":
-                        $modul = "modul1";
-                        break;
-                    case "M02":
-                        $modul = "modul2";
-                        break;
-                    case "M03":
-                        $modul = "modul3";
-                        break;
-                    case "M04":
-                        $modul = "modul4";
-                        break;
-                    case "M11":
-                        $modul = "modul11";
-                        break;
-                    case "M12":
-                        $modul = "modul12";
-                        break;
-                }
-                // no se hacerlo :C
-
-            }
+			if (isset($_SESSION['modificat'])){
+				if ($_SESSION['modificat']) echo "<p style='color:red'>L'Usuari ha estat modificat correctament</p>";
+				else{
+					echo "L'Usuari no ha estat registrat<br>";
+					echo "Comprova si hi ha algún problema del sistema per poder enregistrar nous usuaris<br>";
+				}
+				unset($_SESSION['modificat']);
+			} 
         ?>
 
 	</body>

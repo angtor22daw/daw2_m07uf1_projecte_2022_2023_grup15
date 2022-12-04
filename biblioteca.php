@@ -66,10 +66,63 @@
 		}
 		return $afegit;
 	}
+
+	function fActualitzaAlumnes($nom_nou_alumne,$primerCognom_nou_alumne,$segonCognom_nou_alumne,$nota_M01,$nota_M02,$nota_M03,$nota_M04,$nota_M11,$nota_M12){
+		$alumnes = fLlegeixFitxer(FITXER_ALUMNES);
+
+		$identificador=count($alumnes)+1;
+		$dades_nou_alumne="\n".$identificador.":".$nom_nou_alumne.":".$primerCognom_nou_alumne.":".$segonCognom_nou_alumne.":".$nota_M01.":".$nota_M02.":".$nota_M03.":".$nota_M04.":".$nota_M11.":".$nota_M12;
 		
-	function fCreaTaula($llista,$tipus){
+		if ($fp=fopen(FITXER_ALUMNES,"a")) {
+			if (fwrite($fp,$dades_nou_alumne)){
+				$afegitAlumne=true;
+			}
+			else{
+				$afegitAlumne=false;
+			}				
+			fclose($fp);
+		}
+		else{
+			$afegitAlumne=false;
+		}
+		return $afegitAlumne;
+	}
+
+	function fEliminarAlumne($idAlumne){
+		$alumnes = fLlegeixFitxer(FITXER_ALUMNES);
+		$alumnes_nou = array();
+		foreach ($alumnes as $alumne) {
+			$dadesAlumne = explode(":", $alumne);
+			if($dadesAlumne[0] != $idAlumne){
+				array_push($alumnes_nou, $alumne);
+			}
+		}
+		$alumnes_nou = implode(PHP_EOL, $alumnes_nou);
+		if ($fp=fopen(FITXER_ALUMNES,"w")) {
+			if (fwrite($fp,$alumnes_nou)){
+				$eliminat=true;
+			}
+			else{
+				$eliminat=false;
+			}				
+			fclose($fp);
+		}
+		else{
+			$eliminat=false;
+		}
+		return $eliminat;
+	}
+	
+
+	function fModificarAlumne($idAlumne,$notaAntiga,$notaNova){
+		$modificat=true;
+		return $modificat;
+	}
+
+	function fCreaTaula($llista,){
 		foreach ($llista as $entrada) {
 			$dadesEntrada = explode(":", $entrada);
+			echo '<pre>'; print_r($entrada); echo '</pre>';
 			$id = $dadesEntrada[0];
 			$nom = $dadesEntrada[1];
 			$cognom1 = $dadesEntrada[2];
@@ -80,15 +133,9 @@
 			$notaM04 = $dadesEntrada[7];
 			$notaM11 = $dadesEntrada[8];
 			$notaM12 = $dadesEntrada[9];
-			if ($tipus=="COMU"){
+
+			echo "<tr><td>$id</td><td>$nom</td><td>$cognom1</td><td>$cognom2</td><td>$notaM01</td><td>$notaM02</td><td>$notaM03</td><td>$notaM04</td><td>$notaM11</td><td>$notaM12</td></tr>";
 				
-				echo "<tr><td>$id</td><td>$nom</td><td>$cognom1</td><td>$cognom2</td><td>$notaM01</td><td>$notaM02</td><td>$notaM03</td><td>$notaM04</td><td>$notaM11</td><td>$notaM12</td></tr>";
-			}
-			else{
-				$carrec = $dadesEntrada[1];
-				$tlf = $dadesEntrada[2]; 
-				echo "<tr><td>$nom</td><td>$carrec</td><td>$tlf</td></tr>";
-			}					
 		}
 		return 0;
 	}

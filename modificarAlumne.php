@@ -8,28 +8,6 @@
 		header("Location: ./errors/logout_expira_sessio.php");
 	}
     if ((isset($_POST['ID_alumne'])) && (isset($_POST['moduls'])) && (isset($_POST['novaNota']))){	
-        // $modul = $_POST['moduls'];
-
-        // switch($modul){
-        //     case "M01":
-        //         $modul = "modul1";
-        //         break;
-        //     case "M02":
-        //         $modul = "modul2";
-        //         break;
-        //     case "M03":
-        //         $modul = "modul3";
-        //         break;
-        //     case "M04":
-        //         $modul = "modul4";
-        //         break;
-        //     case "M11":
-        //         $modul = "modul11";
-        //         break;
-        //     case "M12":
-        //         $modul = "modul12";
-        //         break;
-        // }
 		$modificat=fModificarAlumne($_POST['ID_alumne'],$_POST['moduls'],$_POST['novaNota']);
 		$_SESSION['modificat']=$modificat;
 		header("refresh: 5; url=menu_admin.php"); // Passats 5 segons el navegador demana menu_admin.php i es torna a menu_admin.php.
@@ -39,7 +17,7 @@
 <html lang="ca">
 	<head>
 		<meta charset="utf-8">
-		<title>Visualitzador de l'agenda</title>
+		<title>Modificació de notes</title>
         <link rel="stylesheet" href="css/estils.css">
 	</head>
 	<body>

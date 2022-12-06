@@ -1,17 +1,17 @@
 <?php
 	session_start();
 	if (!isset($_SESSION['usuari'])){
-		header("Location: error_acces.php");
+		header("Location: ./errors/error_acces.php");
 	}
 	if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
-		header("Location: logout_expira_sessio.php");
+		header("Location: ./errors/logout_expira_sessio.php");
 	}	
 ?>
 <!DOCTYPE html>
 <html lang="ca">
 	<head>
 		<meta charset="utf-8">
-		<title>Visualitzador de l'agenda</title>
+		<title>Menú del administrador</title>
 		<link rel="stylesheet" href="agenda.css">
 	</head>
 	<body>

@@ -90,16 +90,16 @@
 
 	function fEliminarAlumne($idAlumne){
 		$alumnes = fLlegeixFitxer(FITXER_ALUMNES);
-		$alumnes_nou = array();
+		$llistaAlumnes = array();
 		foreach ($alumnes as $alumne) {
 			$dadesAlumne = explode(":", $alumne);
 			if($dadesAlumne[0] != $idAlumne){
-				array_push($alumnes_nou, $alumne);
+				array_push($llistaAlumnes, $alumne);
 			}
 		}
-		$alumnes_nou = implode(PHP_EOL, $alumnes_nou);
+		$llistaAlumnes = implode(PHP_EOL, $llistaAlumnes);
 		if ($fp=fopen(FITXER_ALUMNES,"w")) {
-			if (fwrite($fp,$alumnes_nou)){
+			if (fwrite($fp,$llistaAlumnes)){
 				$eliminat=true;
 			}
 			else{
@@ -115,11 +115,56 @@
 	
 
 	function fModificarAlumne($idAlumne,$notaAntiga,$notaNova){
-		$modificat=true;
+		$alumnes = fLlegeixFitxer(FITXER_ALUMNES);
+		$llistaAlumnes = array();
+		foreach ($alumnes as $alumne) {
+			$dadesAlumne = explode(":", $alumne);
+			if($dadesAlumne[0] == $idAlumne){
+				switch($notaAntiga){
+					case "M01":
+						$dadesAlumne[4] = $notaNova;
+						break;
+					case "M02":
+						$dadesAlumne[5] = $notaNova;
+						break;
+					case "M03":
+						$dadesAlumne[6] = $notaNova;
+						break;
+					case "M04":
+						$dadesAlumne[7] = $notaNova;
+						break;
+					case "M11":
+						$dadesAlumne[8] = $notaNova;
+						break;
+					case "M12":
+						$dadesAlumne[9] = $notaNova;
+						break;
+				}
+				$alumneModificat = $dadesAlumne[0].":".$dadesAlumne[1].":".$dadesAlumne[2].":".$dadesAlumne[3].":".$dadesAlumne[4].":".$dadesAlumne[5].":".$dadesAlumne[6].":".$dadesAlumne[7].":".$dadesAlumne[8].":".$dadesAlumne[9];
+				$alumneModificat = str_replace($notaAntiga, $notaNova, $alumneModificat);
+				array_push($llistaAlumnes, $alumneModificat);
+			}
+			else{
+				array_push($llistaAlumnes, $alumne);
+			}
+		}
+		$llistaAlumnes = implode(PHP_EOL, $llistaAlumnes);
+		if ($fp=fopen(FITXER_ALUMNES,"w")) {
+			if (fwrite($fp,$llistaAlumnes)){
+				$modificat=true;
+			}
+			else{
+				$modificat=false;
+			}				
+			fclose($fp);
+		}
+		else{
+			$modificat=false;
+		}
 		return $modificat;
 	}
 
-	function fCreaTaula($llista,){
+	function fCreaTaula($llista){
 		foreach ($llista as $entrada) {
 			$dadesEntrada = explode(":", $entrada);
 			echo '<pre>'; print_r($entrada); echo '</pre>';

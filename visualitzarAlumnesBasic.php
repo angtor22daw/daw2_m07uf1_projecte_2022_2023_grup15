@@ -1,27 +1,20 @@
 <?php
 	ini_set('display_errors', 0);
 	session_start();
-
-	require("biblioteca.php");
-	if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
-		header("Location: ./errors/logout_expira_sessio.php");
-	}
-
+	
 	if (!isset($_SESSION['usuari'])){
 		header("Location: ./errors/error_acces.php");
 	}
-	else{
-		$autoritzat=fAutoritzacio($_SESSION['usuari']);
-		if(!$autoritzat){
-			header("Location: ./errors/error_autoritzacio.php");
-		}
+
+	if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
+		header("Location: ./errors/logout_expira_sessio.php");
 	}
 ?>
 <!DOCTYPE html>
 <html lang="ca">
 	<head>
 		<meta charset="utf-8">
-		<title>Visualitzar Alumnes [ADMIN]</title>
+		<title>Visualitzar Alumnes [BASIC]</title>
 		<style>
 		table {
 			border-collapse: collapse;
@@ -58,7 +51,7 @@
 			</thead>
 			<tbody>
 			<?php
-				// movem require biblioteca a l'inici del fitxer
+				require("biblioteca.php");
 				$llista = fLlegeixFitxer(FITXER_ALUMNES);
 				fCreaTaula($llista);
 			?>
@@ -74,7 +67,7 @@
 			<input type="submit" value="Enviar mail">
 		</form> -->
 		<!-- <a href="pdfAlumnes.php">Generar PDF</a> -->
-		<p><a href="menu_admin.php">Torna al menú</a></p>
+		<p><a href="menu_basic.php">Torna al menú</a></p>
         <label class="diahora"> 
         <?php
 			echo "<p>Has iniciat sessió amb l'usuari: ".$_SESSION['usuari']."</p>";

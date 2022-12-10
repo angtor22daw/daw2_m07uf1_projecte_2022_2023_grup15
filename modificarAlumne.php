@@ -1,11 +1,18 @@
 <?php
 	require("biblioteca.php");
 	session_start();
+	if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
+		header("Location: ./errors/logout_expira_sessio.php");
+	}
+
 	if (!isset($_SESSION['usuari'])){
 		header("Location: ./errors/error_acces.php");
 	}
-	if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
-		header("Location: ./errors/logout_expira_sessio.php");
+	else{
+		$autoritzat=fAutoritzacio($_SESSION['usuari']);
+		if(!$autoritzat){
+			header("Location: ./errors/error_autoritzacio.php");
+		}
 	}
     if ((isset($_POST['ID_alumne'])) && (isset($_POST['moduls'])) && (isset($_POST['novaNota']))){	
 		$modificat=fModificarAlumne($_POST['ID_alumne'],$_POST['moduls'],$_POST['novaNota']);

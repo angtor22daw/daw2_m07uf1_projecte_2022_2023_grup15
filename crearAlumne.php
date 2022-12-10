@@ -1,6 +1,11 @@
 <?php
 	require("biblioteca.php");
 	session_start();
+
+	if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
+		header("Location: ./errors/logout_expira_sessio.php");
+	}
+
 	if (!isset($_SESSION['usuari'])){
 		header("Location: ./errors/error_acces.php");
 	}
@@ -9,9 +14,6 @@
 		if(!$autoritzat){
 			header("Location: ./errors/error_autoritzacio.php");
 		}
-	}
-	if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
-		header("Location: ./errors/logout_expira_sessio.php");
 	}
 
     // FUNCIO QUE ENVIE LES DADES DEL FORM

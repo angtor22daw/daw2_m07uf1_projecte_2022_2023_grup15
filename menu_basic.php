@@ -1,4 +1,5 @@
 <?php
+	ini_set('display_errors', 0);
 	session_start();
 	if (!isset($_SESSION['usuari'])){
 		header("Location: ./errors/error_acces.php");
@@ -11,31 +12,24 @@
 <html lang="ca">
 	<head>
 		<meta charset="utf-8">
-		<title>Interfície Usuari</title>
+		<title>Interfície de l'usuari</title>
 		<link rel="stylesheet" href="agenda.css">
 	</head>
 	<body>
-		<h3><b>Menú del visualitzador de l'agenda</b></h3>
-        <!-- <a href="personal.php">Agenda personal</a><br>
-        <a href="professional.php">Agenda professional</a><br>
-        <a href="serveis.php">Agenda de serveis</a><br> -->
-        <!-- <p><a href="registre.php">Registre de nous usuaris</a></p> -->
-		
+		<h3><b>Menú de l'usuari</b></h3>
+		<p>Visualització dels alumnes: </p>
+		<a href="visualitzarAlumnesBasic.php">Visualitzar alumnes</a><br><br>
+		<p>Tancament de sessió: </p>
         <p><a href="logout.php">Finalitza la sessió</a></p>
-        <label class="diahora"> 
+
         <?php
 			require('./biblioteca.php');
-
 			echo "<p>Usuari utilitzant l'agenda: ".$_SESSION['usuari']."</p>";
-			// date_default_timezone_set('Europe/Andorra');
-			// echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";
-		
-			// Verificar tipus d'usuari (Basic/Administrador)
 			$autoritzat=fAutoritzacio($_SESSION['usuari']);
 			if(!$autoritzat){
-				echo "<p> Tipus d'usuari: Basic";
+				echo "<p> Tipus d'usuari: Basic </p>";
 			}else{
-				echo "<p> Tipus d'usuari: Administrador";
+				echo "<p> Tipus d'usuari: Administrador </p>";
 			}
         ?>
         </label>		

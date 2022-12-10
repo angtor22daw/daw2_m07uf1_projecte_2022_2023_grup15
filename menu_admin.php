@@ -1,11 +1,19 @@
 <?php
 	session_start();
+	require("biblioteca.php");
+	if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
+		header("Location: ./errors/logout_expira_sessio.php");
+	}
+
 	if (!isset($_SESSION['usuari'])){
 		header("Location: ./errors/error_acces.php");
 	}
-	if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
-		header("Location: ./errors/logout_expira_sessio.php");
-	}	
+	else{
+		$autoritzat=fAutoritzacio($_SESSION['usuari']);
+		if(!$autoritzat){
+			header("Location: ./errors/error_autoritzacio.php");
+		}
+	}
 ?>
 <!DOCTYPE html>
 <html lang="ca">
@@ -25,9 +33,9 @@
         <p><a href="registre.php">Registrar nous usuaris</a></p><br>
 		<p>Tancament de sessió: </p>
         <p><a href="logout.php">Finalitza la sessió</a></p>
-        <!-- <label class="diahora"> -->
+
         <?php
-			require('./biblioteca.php');	
+			// require('./biblioteca.php');
 			echo "<p>Usuari utilitzant l'agenda: ".$_SESSION['usuari']."</p>";
 			// date_default_timezone_set('Europe/Andorra');
 			// echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";

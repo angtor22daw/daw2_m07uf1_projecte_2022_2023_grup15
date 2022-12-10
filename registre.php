@@ -23,7 +23,7 @@
 <html lang="ca">
 	<head>
 		<meta charset="utf-8">
-		<title>Visualitzador de l'agenda</title>
+		<title>Registrarse</title>
 	</head>
 	<body>
 		<h3><b>Registre d'usuaris del visualitzador de l'agenda</b></h3>

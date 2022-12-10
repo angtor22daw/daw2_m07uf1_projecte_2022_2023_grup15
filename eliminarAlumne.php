@@ -44,8 +44,8 @@
 			if (isset($_SESSION['eliminar'])){
 				if ($_SESSION['eliminar']) echo "<p style='color:red'>L'alumne ha estat eliminat correctament</p>";
 				else{
-					echo "L'Usuari no ha estat registrat<br>";
-					echo "Comprova si hi ha algún problema del sistema per poder enregistrar nous usuaris<br>";
+					echo "L'Usuari no ha estat eliminat<br>";
+					echo "Comprova si hi ha algún problema del sistema per poder eliminar usuaris<br>";
 				}
 				unset($_SESSION['eliminar']);
 			} 

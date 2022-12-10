@@ -101,6 +101,9 @@
 	}
 
 	function fEliminarAlumne($idAlumne){
+		if($idAlumne<0 || $idAlumne>25){
+			return $eliminat=false;
+		}
 		$alumnes = fLlegeixFitxer(FITXER_ALUMNES);
 		$llistaAlumnes = array();
 		foreach ($alumnes as $alumne) {
@@ -109,6 +112,7 @@
 				array_push($llistaAlumnes, $alumne);
 			}
 		}
+
 		$llistaAlumnes = implode(PHP_EOL, $llistaAlumnes);
 		if ($fp=fopen(FITXER_ALUMNES,"w")) {
 			if (fwrite($fp,$llistaAlumnes)){

@@ -52,6 +52,16 @@
 	function fActualitzaUsuaris($nomUsuari,$ctsnya,$tipus){
 		$ctsnya_hash=password_hash($ctsnya,PASSWORD_DEFAULT);
 		$dades_nou_usuari=$nomUsuari.":".$ctsnya_hash.":".$tipus."\n";
+		//Si existeix l'usuari retorna error
+		$usuaris = fLlegeixFitxer(FITXER_USUARIS);
+		foreach ($usuaris as $usuari) {
+			$dadesUsuari = explode(":", $usuari);
+			$nomFitxer = $dadesUsuari[0];
+			if($nomFitxer == $nomUsuari){
+				return $afegit=false;
+			}
+		}
+
 		if ($fp=fopen(FITXER_USUARIS,"a")) {
 			if (fwrite($fp,$dades_nou_usuari)){
 				$afegit=true;
@@ -69,10 +79,12 @@
 
 	function fActualitzaAlumnes($nom_nou_alumne,$primerCognom_nou_alumne,$segonCognom_nou_alumne,$nota_M01,$nota_M02,$nota_M03,$nota_M04,$nota_M11,$nota_M12){
 		$alumnes = fLlegeixFitxer(FITXER_ALUMNES);
-
-		$identificador=count($alumnes)+1;
+		$identificador=sprintf("%02d",count($alumnes)+1);
+		if($identificador>25){
+			return $afegitAlumne=false;
+		}
 		$dades_nou_alumne="\n".$identificador.":".$nom_nou_alumne.":".$primerCognom_nou_alumne.":".$segonCognom_nou_alumne.":".$nota_M01.":".$nota_M02.":".$nota_M03.":".$nota_M04.":".$nota_M11.":".$nota_M12;
-		
+
 		if ($fp=fopen(FITXER_ALUMNES,"a")) {
 			if (fwrite($fp,$dades_nou_alumne)){
 				$afegitAlumne=true;

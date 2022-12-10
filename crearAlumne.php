@@ -20,7 +20,6 @@
 	if ((isset($_POST['nom_nou_alumne'])) && (isset($_POST['primerCognom_nou_alumne'])) && (isset($_POST['segonCognom_nou_alumne'])) && (isset($_POST['nota_M01'])) && (isset($_POST['nota_M02'])) && (isset($_POST['nota_M03'])) && (isset($_POST['nota_M04'])) && (isset($_POST['nota_M11'])) && (isset($_POST['nota_M12']))){		
 		$afegitAlumne=fActualitzaAlumnes($_POST['nom_nou_alumne'],$_POST['primerCognom_nou_alumne'],$_POST['segonCognom_nou_alumne'],$_POST['nota_M01'],$_POST['nota_M02'],$_POST['nota_M03'],$_POST['nota_M04'],$_POST['nota_M11'],$_POST['nota_M12']);
 		$_SESSION['afegitAlumne']=$afegitAlumne;
-		header("refresh: 5; url=menu_admin.php"); // Passats 5 segons el navegador demana menu_admin.php i es torna a menu_admin.php.
 	}		
 ?>
 <!DOCTYPE html>
@@ -79,6 +78,7 @@
 				else{
 					echo "L'Usuari no ha estat registrat<br>";
 					echo "Comprova si hi ha algún problema del sistema per poder enregistrar nous usuaris<br>";
+					header("refresh: 10; url=menu_admin.php");
 				}
 				unset($_SESSION['afegitAlumne']);
 			}

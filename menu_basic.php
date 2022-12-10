@@ -1,12 +1,16 @@
 <?php
 	ini_set('display_errors', 0);
 	session_start();
+	require('./biblioteca.php');
 	if (!isset($_SESSION['usuari'])){
 		header("Location: ./errors/error_acces.php");
 	}
 	if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
 		header("Location: ./errors/logout_expira_sessio.php");
-	}	
+	}
+	if(fAutoritzacio($_SESSION['usuari'])){
+		header("Location: ./menu_admin.php");
+	}
 ?>
 <!DOCTYPE html>
 <html lang="ca">
@@ -23,7 +27,7 @@
         <p><a href="logout.php">Finalitza la sessió</a></p>
 
         <?php
-			require('./biblioteca.php');
+			// require('./biblioteca.php');
 			echo "<p>Usuari utilitzant l'agenda: ".$_SESSION['usuari']."</p>";
 			$autoritzat=fAutoritzacio($_SESSION['usuari']);
 			if(!$autoritzat){

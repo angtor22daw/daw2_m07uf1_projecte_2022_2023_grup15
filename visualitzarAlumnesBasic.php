@@ -1,13 +1,17 @@
 <?php
 	ini_set('display_errors', 0);
 	session_start();
-	
+	require("biblioteca.php");
 	if (!isset($_SESSION['usuari'])){
 		header("Location: ./errors/error_acces.php");
 	}
 
 	if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
 		header("Location: ./errors/logout_expira_sessio.php");
+	}
+
+    if(fAutoritzacio($_SESSION['usuari'])){
+		header("Location: ./menu_admin.php");
 	}
 ?>
 <!DOCTYPE html>
@@ -51,7 +55,7 @@
 			</thead>
 			<tbody>
 			<?php
-				require("biblioteca.php");
+				// require("biblioteca.php");
 				$llista = fLlegeixFitxer(FITXER_ALUMNES);
 				fCreaTaula($llista);
 			?>

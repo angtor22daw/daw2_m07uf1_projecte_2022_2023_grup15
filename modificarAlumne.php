@@ -17,7 +17,6 @@
     if ((isset($_POST['ID_alumne'])) && (isset($_POST['moduls'])) && (isset($_POST['novaNota']))){	
 		$modificat=fModificarAlumne($_POST['ID_alumne'],$_POST['moduls'],$_POST['novaNota']);
 		$_SESSION['modificat']=$modificat;
-		header("refresh: 5; url=menu_admin.php"); // Passats 5 segons el navegador demana menu_admin.php i es torna a menu_admin.php.
 	}		
 ?>
 <!DOCTYPE html>
@@ -58,9 +57,9 @@
 
 			$autoritzat=fAutoritzacio($_SESSION['usuari']);
 			if(!$autoritzat){
-				echo "<p> Tipus d'usuari: Basic";
+				echo "<p> Tipus d'usuari: Basic </p>";
 			}else{
-				echo "<p> Tipus d'usuari: Administrador";
+				echo "<p> Tipus d'usuari: Administrador </p>";
 			}
 
 			if (isset($_SESSION['modificat'])){
@@ -68,6 +67,7 @@
 				else{
 					echo "L'Usuari no ha estat registrat<br>";
 					echo "Comprova si hi ha algún problema del sistema per poder enregistrar nous usuaris<br>";
+					header("refresh: 10; url=menu_admin.php"); // Passats 5 segons el navegador demana menu_admin.php i es torna a menu_admin.php.
 				}
 				unset($_SESSION['modificat']);
 			} 

@@ -16,7 +16,6 @@
 	if ((isset($_POST['ID_alumne']))){		
 		$eliminar=fEliminarAlumne($_POST['ID_alumne']);
 		$_SESSION['eliminar']=$eliminar;
-		header("refresh: 5; url=menu_admin.php"); // Passats 5 segons el navegador demana menu_admin.php i es torna a menu_admin.php.
 	}			
 ?>
 <!DOCTYPE html>
@@ -46,6 +45,7 @@
 				else{
 					echo "L'Usuari no ha estat eliminat<br>";
 					echo "Comprova si hi ha algún problema del sistema per poder eliminar usuaris<br>";
+					header("refresh: 10; url=menu_admin.php"); // Passats 5 segons el navegador demana menu_admin.php i es torna a menu_admin.php.
 				}
 				unset($_SESSION['eliminar']);
 			} 

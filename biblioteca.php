@@ -83,6 +83,34 @@
 		if($identificador>25){
 			return $afegitAlumne=false;
 		}
+		if (preg_match('/[^A-Za-z]/', $nom_nou_alumne)){
+			return $afegitAlumne=false;
+		}
+		if (preg_match('/[^A-Za-z]/', $primerCognom_nou_alumne)){
+			return $afegitAlumne=false;
+		}
+		if (preg_match('/[^A-Za-z]/', $segonCognom_nou_alumne)){
+			return $afegitAlumne=false;
+		}
+		if ($nota_M01<0 || $nota_M01>10){
+			return $afegitAlumne=false;
+		}
+		if ($nota_M02<0 || $nota_M02>10){
+			return $afegitAlumne=false;
+		}
+		if ($nota_M03<0 || $nota_M03>10){
+			return $afegitAlumne=false;
+		}
+		if ($nota_M04<0 || $nota_M04>10){
+			return $afegitAlumne=false;
+		}
+		if ($nota_M11<0 || $nota_M11>10){
+			return $afegitAlumne=false;
+		}
+		if ($nota_M12<0 || $nota_M12>10){
+			return $afegitAlumne=false;
+		}
+		
 		$dades_nou_alumne="\n".$identificador.":".$nom_nou_alumne.":".$primerCognom_nou_alumne.":".$segonCognom_nou_alumne.":".$nota_M01.":".$nota_M02.":".$nota_M03.":".$nota_M04.":".$nota_M11.":".$nota_M12;
 
 		if ($fp=fopen(FITXER_ALUMNES,"a")) {
@@ -131,6 +159,12 @@
 	
 
 	function fModificarAlumne($idAlumne,$notaAntiga,$notaNova){
+		if($idAlumne<0 || $idAlumne>25){
+			return $modificat=false;
+		}
+		if($notaNova<0 || $notaNova>10){
+			return $modificat=false;
+		}
 		$alumnes = fLlegeixFitxer(FITXER_ALUMNES);
 		$llistaAlumnes = array();
 		foreach ($alumnes as $alumne) {

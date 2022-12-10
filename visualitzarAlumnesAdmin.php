@@ -1,8 +1,13 @@
 <?php
+	ini_set('display_errors', 0);
 	session_start();
+	
 	if (!isset($_SESSION['usuari'])){
 		header("Location: ./errors/error_acces.php");
 	}
+
+	
+
 	if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
 		header("Location: ./errors/logout_expira_sessio.php");
 	}
@@ -12,7 +17,22 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Visualitzador de l'agenda</title>
-		<link rel="stylesheet" href="css/estils.css">
+		<style>
+		table {
+			border-collapse: collapse;
+		}
+
+		th, td {
+			border: 1px solid #999;
+			padding: 0.5rem;
+			text-align: left;
+		}
+
+		th{
+			background-color: #8a47d1;
+			color: white;
+		}
+		</style>
 	</head>
 	<body>
 		<h3><b>Llistat de tots els alumnes</b></h3>
@@ -39,6 +59,16 @@
 			?>
 			</tbody>
 		</table>
+		
+		<br>
+		<form action="pdfAlumnes.php" method="POST" target="_blank">
+			<input type="submit" value="Generar PDF">
+		</form>
+		<br>
+		<!-- <form action="enviarMail.php" method="POST" target="_blank">
+			<input type="submit" value="Enviar mail">
+		</form> -->
+		<!-- <a href="pdfAlumnes.php">Generar PDF</a> -->
 		<p><a href="menu_admin.php">Torna al menú</a></p>
         <label class="diahora"> 
         <?php

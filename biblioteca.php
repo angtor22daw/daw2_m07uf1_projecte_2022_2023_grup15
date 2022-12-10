@@ -167,7 +167,7 @@
 	function fCreaTaula($llista){
 		foreach ($llista as $entrada) {
 			$dadesEntrada = explode(":", $entrada);
-			echo '<pre>'; print_r($entrada); echo '</pre>';
+			// echo '<pre>'; print_r($entrada); echo '</pre>';
 			$id = $dadesEntrada[0];
 			$nom = $dadesEntrada[1];
 			$cognom1 = $dadesEntrada[2];

@@ -17,7 +17,13 @@
     if ((isset($_POST['ID_alumne'])) && (isset($_POST['moduls'])) && (isset($_POST['novaNota']))){	
 		$modificat=fModificarAlumne($_POST['ID_alumne'],$_POST['moduls'],$_POST['novaNota']);
 		$_SESSION['modificat']=$modificat;
-	}		
+	}
+	if (isset($_SESSION['modificat'])){
+		if ($_SESSION['modificat']) echo "<p style='color:red'>L'Usuari ha estat modificat correctament</p>";
+		else{
+			header("refresh: 10; url=menu_admin.php"); // Passats 5 segons el navegador demana menu_admin.php i es torna a menu_admin.php.
+		}
+	} 		
 ?>
 <!DOCTYPE html>
 <html lang="ca">
@@ -67,7 +73,6 @@
 				else{
 					echo "L'Usuari no ha estat registrat<br>";
 					echo "Comprova si hi ha algún problema del sistema per poder enregistrar nous usuaris<br>";
-					header("refresh: 10; url=menu_admin.php"); // Passats 5 segons el navegador demana menu_admin.php i es torna a menu_admin.php.
 				}
 				unset($_SESSION['modificat']);
 			} 

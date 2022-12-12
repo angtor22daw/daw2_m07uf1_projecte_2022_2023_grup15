@@ -1,3 +1,4 @@
+<?php header("refresh:10;url=../login.php")?>
 <!DOCTYPE html>
 <html lang="ca">
 	<head>
@@ -11,11 +12,6 @@
         <p><a href="../index.php">Torna a la pàgina inicial</a></p>
         <p><a href="../login.php">Torna a la pàgina d'inici de sessió</a></p>
         <label class="diahora"> 
-        <?php
-			date_default_timezone_set('Europe/Andorra');
-			echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";
-			header("refresh: 10; url=../login.php");
-        ?>
         </label>
 	</body>
 </html>

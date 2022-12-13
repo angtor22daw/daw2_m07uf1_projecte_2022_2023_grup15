@@ -1,6 +1,10 @@
 <?php
 	require("biblioteca.php");
 	session_start();
+	if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
+		header("Location: ./errors/logout_expira_sessio.php");
+	}
+
 	if (!isset($_SESSION['usuari'])){
 		header("Location: ./errors/error_acces.php");
 	}
@@ -10,13 +14,18 @@
 			header("Location: ./errors/error_autoritzacio.php");
 		}
 	}
-	if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
-		header("Location: ./errors/logout_expira_sessio.php");
-	}
 	if ((isset($_POST['ID_alumne']))){		
 		$eliminar=fEliminarAlumne($_POST['ID_alumne']);
 		$_SESSION['eliminar']=$eliminar;
-	}			
+	}
+	// RETORNA EN 10 SEGONS
+	if (isset($_SESSION['eliminar'])){
+		if ($_SESSION['eliminar']);
+		else{
+			header("refresh: 10; url=menu_admin.php"); // Passats 5 segons el navegador demana menu_admin.php i es torna a menu_admin.php.
+		}
+		//unset($_SESSION['eliminar']);
+	}	
 ?>
 <!DOCTYPE html>
 <html lang="ca">
@@ -38,14 +47,19 @@
 		<!-- <label class="diahora"> -->
 		<?php
 			echo "<p>Usuari utilitzant l'agenda: ".$_SESSION['usuari']."</p>";
-			// date_default_timezone_set('Europe/Andorra');
-			// echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";
+
+			$autoritzat=fAutoritzacio($_SESSION['usuari']);
+			if(!$autoritzat){
+				echo "<p> Tipus d'usuari: Basic </p>";
+			}else{
+				echo "<p> Tipus d'usuari: Administrador </p>";
+			}
 			if (isset($_SESSION['eliminar'])){
 				if ($_SESSION['eliminar']) echo "<p style='color:red'>L'alumne ha estat eliminat correctament</p>";
 				else{
-					echo "L'Usuari no ha estat eliminat<br>";
-					echo "Comprova si hi ha algún problema del sistema per poder eliminar usuaris<br>";
-					header("refresh: 10; url=menu_admin.php"); // Passats 5 segons el navegador demana menu_admin.php i es torna a menu_admin.php.
+					echo "<p style='color:red'>L'Usuari no ha estat eliminat</p><br>";
+					echo "<p style='color:red'>Comprova si hi ha algún problema del sistema per poder eliminar usuaris</p><br>";
+					// header("refresh: 10; url=menu_admin.php"); // Passats 5 segons el navegador demana menu_admin.php i es torna a menu_admin.php.
 				}
 				unset($_SESSION['eliminar']);
 			} 

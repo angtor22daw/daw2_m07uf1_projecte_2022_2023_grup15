@@ -20,7 +20,15 @@
 	if ((isset($_POST['nom_nou_alumne'])) && (isset($_POST['primerCognom_nou_alumne'])) && (isset($_POST['segonCognom_nou_alumne'])) && (isset($_POST['nota_M01'])) && (isset($_POST['nota_M02'])) && (isset($_POST['nota_M03'])) && (isset($_POST['nota_M04'])) && (isset($_POST['nota_M11'])) && (isset($_POST['nota_M12']))){		
 		$afegitAlumne=fActualitzaAlumnes($_POST['nom_nou_alumne'],$_POST['primerCognom_nou_alumne'],$_POST['segonCognom_nou_alumne'],$_POST['nota_M01'],$_POST['nota_M02'],$_POST['nota_M03'],$_POST['nota_M04'],$_POST['nota_M11'],$_POST['nota_M12']);
 		$_SESSION['afegitAlumne']=$afegitAlumne;
-	}		
+	};
+	// RETORNA EN 10 SEGONS
+	if (isset($_SESSION['afegitAlumne'])){
+		if ($_SESSION['afegitAlumne']);
+		else{
+			header("refresh: 10; url=menu_admin.php");
+		}
+		//unset($_SESSION['afegitAlumne']);
+	}
 ?>
 <!DOCTYPE html>
 <html lang="ca">
@@ -73,15 +81,6 @@
 		<p><a href="menu_admin.php">Torna al menú</a></p>
 		<!-- <label class="diahora"> -->
 		<?php
-			if (isset($_SESSION['afegitAlumne'])){
-				if ($_SESSION['afegitAlumne']) echo "<p style='color:red'>L'Usuari ha estat registrat correctament</p>";
-				else{
-					echo "L'Usuari no ha estat registrat<br>";
-					echo "Comprova si hi ha algún problema del sistema per poder enregistrar nous usuaris<br>";
-					header("refresh: 10; url=menu_admin.php");
-				}
-				unset($_SESSION['afegitAlumne']);
-			}
 			// NOM I TIPUS D USUARI 
 			echo "<p>Usuari utilitzant l'agenda: ".$_SESSION['usuari']."</p>";
             $autoritzat=fAutoritzacio($_SESSION['usuari']);
@@ -89,6 +88,15 @@
 				echo "<p> Tipus d'usuari: Basic</p>";
 			}else{
 				echo "<p> Tipus d'usuari: Administrador</p>";
+			}
+			if (isset($_SESSION['afegitAlumne'])){
+				if ($_SESSION['afegitAlumne']) echo "<p style='color:red'>L'Usuari ha estat registrat correctament</p>";
+				else{
+					echo "<p style='color:red'>L'Usuari no ha estat registrat</p><br>";
+					echo "<p style='color:red'>Comprova si hi ha algún problema del sistema per poder enregistrar nous usuaris</p><br>";
+					//header("refresh: 10; url=menu_admin.php");
+				}
+				unset($_SESSION['afegitAlumne']);
 			}
         ?>
 		</label>

@@ -229,8 +229,8 @@
 			$notaM11 = $dadesEntrada[8];
 			$notaM12 = $dadesEntrada[9];
 
-			echo "<tr><td>$id</td><td>$nom</td><td>$cognom1</td><td>$cognom2</td><td>$notaM01</td><td>$notaM02</td><td>$notaM03</td><td>$notaM04</td><td>$notaM11</td><td>$notaM12</td></tr>";
-				
+			//echo "<tr><td>$id</td><td>$nom</td><td>$cognom1</td><td>$cognom2</td><td>$notaM01</td><td>$notaM02</td><td>$notaM03</td><td>$notaM04</td><td>$notaM11</td><td>$notaM12</td></tr>";
+			echo "<tr><th scope='row'>$id</th><td>$nom</td><td>$cognom1</td><td>$cognom2</td><td>$notaM01</td><td>$notaM02</td><td>$notaM03</td><td>$notaM04</td><td>$notaM11</td><td>$notaM12</td></tr>";
 		}
 		return 0;
 	}

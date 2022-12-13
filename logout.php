@@ -37,9 +37,16 @@
 		<h3><b>Finalització de sessió del visualitzador de l'agenda</b></h3>
         <p>Estàs segur que vols finalitzar la sessió?:</p>
         <form action="logout.php" method="POST">
-			<input type="radio" name="resp" value="y"/>Sí<br/>
-			<input type="radio" name="resp" value="n" checked/>No<br/>
-			<br>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="resp" value="y" id="resp1" checked>
+					<label class="form-check-label" for="resp1">Sí</label>
+				</input>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="resp" value="n" id="resp2">
+					<label class="form-check-label" for="resp2">No</label>
+				</input>
+			</div>
 			<input type="submit" value="Valida" />
 		</form>
 	</body>

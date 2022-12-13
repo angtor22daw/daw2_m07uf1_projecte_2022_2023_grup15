@@ -23,35 +23,27 @@
 		<style>
 		table {
 			border-collapse: collapse;
-		}
-
-		th, td {
-			border: 1px solid #999;
-			padding: 0.5rem;
-			text-align: left;
-		}
-
-		th{
-			background-color: #8a47d1;
-			color: white;
+			border: 1px solid black;
+			margin-left: 10px;
+			margin-right: 10px;
 		}
 		</style>
 	</head>
 	<body>
-		<h3><b>Llistat de tots els alumnes</b></h3>
-		<table>
-			<thead>
+	<h3><b>Llistat de tots els alumnes</b></h3>
+		<table class="table table-striped">
+			<thead class="thead-dark">
 				<tr>
-                    <th>ID</th>
-					<th>Nom</th>
-					<th>Primer cognom</th>
-                    <th>Segon cognom</th>
-                    <th>Nota M01</th>
-                    <th>Nota M02</th>
-                    <th>Nota M03</th>
-                    <th>Nota M04</th>
-                    <th>Nota M11</th>
-                    <th>Nota M12</th>
+                    <th scope="col">ID</th>
+					<th scope="col">Nom</th>
+					<th scope="col">Primer cognom</th>
+                    <th scope="col">Segon cognom</th>
+                    <th scope="col">Nota M01</th>
+                    <th scope="col">Nota M02</th>
+                    <th scope="col">Nota M03</th>
+                    <th scope="col">Nota M04</th>
+                    <th scope="col">Nota M11</th>
+                    <th scope="col">Nota M12</th>
 				</tr>
 			</thead>
 			<tbody>

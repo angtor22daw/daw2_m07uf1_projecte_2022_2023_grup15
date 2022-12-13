@@ -6,6 +6,7 @@ SENSE HAVER-SE VALIDAT PRÈVIAMENT I ESCRIVINT DIRECTAMENT LA URL A LA BARRA D'A
 		<meta charset="utf-8">
 		<title>Visualitzador de l'agenda</title>
 		<link rel="stylesheet" href="agenda.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
 	</head>
 	<body>
 		<h2><b>Error d'accés a l'aplicació</b></h2>

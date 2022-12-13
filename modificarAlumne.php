@@ -32,6 +32,7 @@
 		<meta charset="utf-8">
 		<title>Modificació de notes</title>
         <link rel="stylesheet" href="css/estils.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
 	</head>
 	<body>
 		<h3><b>Modificació de notes dels alumnes</b></h3>

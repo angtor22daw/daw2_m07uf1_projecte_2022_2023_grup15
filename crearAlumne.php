@@ -35,6 +35,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Crear Alumnes</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
 	</head>
 	<body>
 		<h3><b>Registre de nous Alumnes</b></h3>

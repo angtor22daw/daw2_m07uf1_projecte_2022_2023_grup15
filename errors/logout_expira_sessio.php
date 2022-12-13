@@ -11,6 +11,7 @@
 		<meta charset="utf-8">
 		<title>Visualitzador de l'agenda</title>
 		<link rel="stylesheet" href="agenda.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
 	</head>
 	<body>
 		<h3><b>Ha finalitzat el temps d'expiració de la teva sessió</b></h3>

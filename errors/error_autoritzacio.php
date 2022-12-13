@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<title>Visualitzador de l'agenda</title>
 		<link rel="stylesheet" href="agenda.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
 	</head>
 	<body>
 		<h2><b>Error d'accés al registre de nous usuaris de l'aplicació</b></h2>

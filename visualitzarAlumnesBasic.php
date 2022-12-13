@@ -19,6 +19,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Visualitzar Alumnes [BASIC]</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
 		<style>
 		table {
 			border-collapse: collapse;

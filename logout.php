@@ -8,7 +8,7 @@
 		setcookie("PHPSESSID","",time()-3600,$cookie_sessio['path'], $cookie_sessio['domain'], $cookie_sessio['secure'], $cookie_sessio['httponly']); //Neteja cookie de sessió
 		//Destrucció de la informació de sessió (per exemple, el fitxer de sessió  o l'identificador de sessió) 
 		session_destroy();
-		header("Location: index.php");
+		header("Location: index.html");
 	}
 	else{
 		require('./biblioteca.php');	

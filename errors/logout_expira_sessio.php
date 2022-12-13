@@ -16,7 +16,7 @@
 		<h3><b>Ha finalitzat el temps d'expiració de la teva sessió</b></h3>
         <p>L'aplicació finalitza la sessió automàticament si es superen els 15 minuts de sessió</p>
         <p>Per poder continuar treballant cal tornar a iniciar una sessió</p><br>
-		<p><a href="../index.php">Torna a la pàgina inicial</a></p>
+		<p><a href="../index.html">Torna a la pàgina inicial</a></p>
 		<p><a href="../login.php">Torna a la pàgina d'inici de sessió</a></p>
 		<!-- <label class="diahora">  -->
         <!-- <php

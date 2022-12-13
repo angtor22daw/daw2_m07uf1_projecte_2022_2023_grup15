@@ -54,7 +54,7 @@
 					</form>
 					<hr class="my-4">
 					
-					<p><a href="index.php">Torna a la pàgina inicial</a></p>
+					<p><a href="index.html">Torna a la pàgina inicial</a></p>
 
 				</div>	
 				</div>

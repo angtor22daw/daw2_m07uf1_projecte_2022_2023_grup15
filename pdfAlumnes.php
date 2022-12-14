@@ -10,7 +10,7 @@
     use Dompdf\Dompdf;
     $dompdf = new Dompdf();
     ob_start();
-    include "./visualitzarAlumnesBasic.php";
+    include "./imprimirAlumnes.php";
     $html = ob_get_clean();
     $dompdf->loadHtml($html);
     $dompdf->render();

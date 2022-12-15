@@ -31,23 +31,33 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Tancar sessió</title>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
+		<link href="css/sidebars.css" rel="stylesheet">
 	</head>
 	<body>
-		<h3><b>Finalització de sessió del visualitzador de l'agenda</b></h3>
-        <p>Estàs segur que vols finalitzar la sessió?:</p>
-        <form action="logout.php" method="POST">
-			<div class="form-check">
-				<input class="form-check-input" type="radio" name="resp" value="y" id="resp1" checked>
-					<label class="form-check-label" for="resp1">Sí</label>
-				</input>
+		<br><br>
+		<h5 class="display-6">Vols finalitzar la sessió?</h5><br>
+		<div class="card-custom" style="width: 18rem;">
+			<img src="https://cdn-icons-png.flaticon.com/512/59/59399.png"  width="200px"><br>
+			<div class="card-body-custom">
+				<form action="logout.php" method="POST">
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="resp" value="y" id="resp1" checked>
+							<label class="form-check-label" for="resp1">Sí</label>
+						</input>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="resp" value="n" id="resp2">
+							<label class="form-check-label" for="resp2">No</label>
+						</input>
+					</div>
+					<br>
+					<input type="submit" value="Valida" class="btn btn-dark"><br><br>
+				</form>
 			</div>
-			<div class="form-check">
-				<input class="form-check-input" type="radio" name="resp" value="n" id="resp2">
-					<label class="form-check-label" for="resp2">No</label>
-				</input>
-			</div>
-			<input type="submit" value="Valida" />
-		</form>
+		</div>
 	</body>
 </html>  

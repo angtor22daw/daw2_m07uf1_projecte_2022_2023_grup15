@@ -32,29 +32,49 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Eliminar alumnes</title>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
+		<link href="css/sidebars.css" rel="stylesheet">
 	</head>
 	<body>
-		<h3><b>Eliminar alumnes</b></h3>
-		<p><b>Indica l'ID de l'alumne a eliminar: </b></p>			
-		<form action="eliminarAlumne.php" method="POST">			
-			<p>
-				<label>ID de l'alumne:</label> 
-				<input type="text" name="ID_alumne" required>
-			</p>
-			<input type="submit" value="Eliminar Alumne"/>
-		</form>
-		<p><a href="menu_admin.php">Torna al menú</a></p>
-		<!-- <label class="diahora"> -->
+	<nav class="navbar navbar-expand-lg bg-info" background-color="black">
+			<div class="container-fluid">
+				<div class=" collapse navbar-collapse" id="navbarNavDropdown">
+				<div class="card">
+				<h5 class="card-header "></h5>
+					<div class="card-body">
+						<?php
+						echo "<p class='navbar-nav ms-auto'>Usuari: ".$_SESSION['usuari']."</p>";
+						$autoritzat=fAutoritzacio($_SESSION['usuari']);
+						if(!$autoritzat){
+							echo "<p class='navbar-nav ms-auto'> Rol: Basic </p>";
+						}else{
+							echo "<p class='navbar-nav ms-auto'> Rol: Administrador </p>";
+						}
+						?>
+					</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<h5 class="display-6">Eliminar alumnes</h5>
+		<div class="card-custom" style="width: 18rem;">
+			<img src="http://estudioalfa.com/wp-content/uploads/2012/11/vbulletin_borrar_mensajes_usuario.png"  width="200px">
+			<div class="card-body-custom">
+				<form action="eliminarAlumne.php" method="POST">
+					<div class="form-floating mb-3 mt-3">
+						<input type="text" class="form-control" name="ID_alumne" required>
+						<label>ID de l'alumne</label>
+					</div>
+					<br>
+					<input type="submit" value="Eliminar Alumne" class="btn btn-danger"><br><br>
+					<button id="button-tornar" type="button" class="btn btn-secondary" onclick=window.location.href="menu_admin.php">Torna al menú</button>
+				</form>
+			</div>
+		</div>	
 		<?php
-			echo "<p>Usuari utilitzant l'agenda: ".$_SESSION['usuari']."</p>";
-
-			$autoritzat=fAutoritzacio($_SESSION['usuari']);
-			if(!$autoritzat){
-				echo "<p> Tipus d'usuari: Basic </p>";
-			}else{
-				echo "<p> Tipus d'usuari: Administrador </p>";
-			}
 			if (isset($_SESSION['eliminar'])){
 				if ($_SESSION['eliminar']) echo "<p style='color:red'>L'alumne ha estat eliminat correctament</p>";
 				else{

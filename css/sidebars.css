@@ -87,4 +87,52 @@ body {
   
   .fw-semibold { font-weight: 600; }
   .lh-tight { line-height: 1.25; }
-  
+
+  .container-fluid{
+    /* flex end */
+    /* display: flex;
+    flex-direction:row-reverse;
+    justify-content: flex-end; */
+    margin-left: 85% !important;
+    font-size: small;
+    
+  }
+  .card-custom{
+    margin: 0 auto;
+  }
+
+  #divMenu{
+    background-color: #000000;
+  }
+  .card-body-custom{
+    margin: 0 auto;
+
+  }
+  h5{
+    text-align: center;
+  }
+
+  img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+  table{
+    border-collapse: collapse;
+    border: 1px solid black;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+    margin: 0 auto;
+    width: 80% !important;
+  }
+  #PDF{
+    text-align: center;
+    margin-left: 10% !important;
+
+  }
+  .navbar{
+
+    background-color: #8567d7 !important;
+  }

@@ -19,18 +19,37 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Visualitzar Alumnes [BASIC]</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
+		<link href="css/sidebars.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-		<style>
-		table {
-			border-collapse: collapse;
-			border: 1px solid black;
-			margin-left: 10px;
-			margin-right: 10px;
-		}
-		</style>
+	</head>
 	</head>
 	<body>
-	<h3><b>Llistat de tots els alumnes</b></h3>
+	<nav class="navbar navbar-expand-lg bg-info" background-color="black">
+			<div class="container-fluid">
+				<div class=" collapse navbar-collapse" id="navbarNavDropdown">
+				<div class="card">
+				<h5 class="card-header "></h5>
+					<div class="card-body">
+						<?php
+						echo "<p class='navbar-nav ms-auto'>Usuari: ".$_SESSION['usuari']."</p>";
+						$autoritzat=fAutoritzacio($_SESSION['usuari']);
+						if(!$autoritzat){
+							echo "<p class='navbar-nav ms-auto'> Rol: Basic </p>";
+						}else{
+							echo "<p class='navbar-nav ms-auto'> Rol: Administrador </p>";
+						}
+						?>
+					</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<h5 class="display-6">Llistat de tots els alumnes</h5><br>
+
 		<table class="table table-striped">
 			<thead class="thead-dark">
 				<tr>
@@ -48,7 +67,7 @@
 			</thead>
 			<tbody>
 			<?php
-				// require("biblioteca.php");
+				// movem require biblioteca a l'inici del fitxer
 				$llista = fLlegeixFitxer(FITXER_ALUMNES);
 				fCreaTaula($llista);
 			?>
@@ -57,20 +76,10 @@
 		
 		<br>
 		<form action="pdfAlumnes.php" method="POST" target="_blank">
-			<input type="submit" value="Generar PDF">
+			<input id="PDF" type="submit" class="btn btn-info" value="Generar PDF">
 		</form>
 		<br>
-		<!-- <form action="enviarMail.php" method="POST" target="_blank">
-			<input type="submit" value="Enviar mail">
-		</form> -->
-		<!-- <a href="pdfAlumnes.php">Generar PDF</a> -->
-		<p><a href="menu_basic.php">Torna al menú</a></p>
-        <label class="diahora"> 
-        <?php
-			echo "<p>Has iniciat sessió amb l'usuari: ".$_SESSION['usuari']."</p>";
-			date_default_timezone_set('Europe/Andorra');
-			echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";						
-        ?>
-        <label class="diahora"> 
+		<button id="PDF" type="button" class="btn btn-secondary" onclick=window.location.href="menu_basic.php">Torna al menú</button><br><br>
+		<br>
 	</body>
 </html>

@@ -2,14 +2,12 @@
 <html lang="ca">
 	<head>
 		<meta charset="utf-8">
-		<title>Visualitzador de l'agenda</title>
-		<link rel="stylesheet" href="agenda.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+		<title>Error </title>
 	</head>
 	<body>
-		<h2><b>Error d'accés al registre de nous usuaris de l'aplicació</b></h2>
+		<h2><b>Error d'autorització NO tens els permissos necessaris</b></h2>
         <p>Per poder accedir a aquesta secció de l'aplicació cal tenir iniciada una sessió d'usuari amb autorització per crear nous usuaris</p>
-        <p>No pots accedir a aquesta secció de l'aplicació per haver iniciat sessió amb un compte d'usuari  no autoritzat per crear nous usuaris</p>
+        <p>No pots accedir a aquesta secció de l'aplicació per haver iniciat sessió amb un compte d'usuari no autoritzat per crear nous usuaris</p>
         <p><a href="../menu_basic.php">Torna a la pàgina menu</a></p>
         <p><a href="../logout.php">Finalitza la sessió</a></p>        
         <label class="diahora"> 

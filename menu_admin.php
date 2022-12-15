@@ -20,7 +20,6 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Menú del administrador</title>
-		<!--<link rel="stylesheet" href="agenda.css"> -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -28,7 +27,27 @@
 		<link href="css/sidebars.css" rel="stylesheet">
 	</head>
 	<body>
-		<div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
+		<nav class="navbar navbar-expand-lg bg-info" background-color="black">
+			<div class="container-fluid">
+				<div class=" collapse navbar-collapse" id="navbarNavDropdown">
+				<div class="card">
+				<h5 class="card-header "></h5>
+					<div class="card-body">
+						<?php
+						echo "<p class='navbar-nav ms-auto'>Usuari: ".$_SESSION['usuari']."</p>";
+						$autoritzat=fAutoritzacio($_SESSION['usuari']);
+						if(!$autoritzat){
+							echo "<p class='navbar-nav ms-auto'> Rol: Basic </p>";
+						}else{
+							echo "<p class='navbar-nav ms-auto'> Rol: Administrador </p>";
+						}
+						?>
+					</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div class="flex-shrink-0 p-3 justify-content-center" style="width: 280px; margin: 0 auto;">
 			<a class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
 				<span class="fs-5 fw-semibold">Menú del Administrador</span>
 			</a>
@@ -52,7 +71,7 @@
         			</button>
         			<div class="collapse" id="dashboard-collapse">
 						<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-							<li><a href="eliminarAlumne.php" class="link-dark rounded">Registrar nous usuaris</a></li>
+							<li><a href="registre.php" class="link-dark rounded">Registrar nous usuaris</a></li>
 						</ul>
 					</div>
 				</li>			
@@ -67,30 +86,7 @@
 					</div>
 				</li>
 			</ul>
-			<!-- <a href="crearAlumne.php">Crear alumne</a><br>
-			<a href="visualitzarAlumnesAdmin.php">Visualitzar alumnes</a><br>
-			<a href="modificarAlumne.php">Modificar notes dels alumnes</a><br>
-			<a href="eliminarAlumne.php">Eliminar alumne</a><br>
-			<p>Creació d'usuaris de l'aplicació: </p>
-			<p><a href="registre.php">Registrar nous usuaris</a></p><br>
-			<p>Tancament de sessió: </p>
-			<p><a href="logout.php">Finalitza la sessió</a></p> -->
-
 		</div>
-        <?php
-			// require('./biblioteca.php');
-			echo "<p>Usuari utilitzant l'agenda: ".$_SESSION['usuari']."</p>";
-			// date_default_timezone_set('Europe/Andorra');
-			// echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";
-	
-			// Verificar tipus d'usuari (Basic/Administrador)
-			$autoritzat=fAutoritzacio($_SESSION['usuari']);
-			if(!$autoritzat){
-				echo "<p> Tipus d'usuari: Basic </p>";
-			}else{
-				echo "<p> Tipus d'usuari: Administrador </p>";
-			}
-        ?>
         </label>		
 	</body>
 </html>

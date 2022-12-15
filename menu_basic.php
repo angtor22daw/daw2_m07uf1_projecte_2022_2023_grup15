@@ -24,9 +24,29 @@
 		<link href="css/sidebars.css" rel="stylesheet">
 	</head>
 	<body>
-	<div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
+		<nav class="navbar navbar-expand-lg bg-info" background-color="black">
+			<div class="container-fluid">
+				<div class=" collapse navbar-collapse" id="navbarNavDropdown">
+				<div class="card">
+				<h5 class="card-header "></h5>
+					<div class="card-body">
+						<?php
+						echo "<p class='navbar-nav ms-auto'>Usuari: ".$_SESSION['usuari']."</p>";
+						$autoritzat=fAutoritzacio($_SESSION['usuari']);
+						if(!$autoritzat){
+							echo "<p class='navbar-nav ms-auto'> Rol: Basic </p>";
+						}else{
+							echo "<p class='navbar-nav ms-auto'> Rol: Administrador </p>";
+						}
+						?>
+					</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div class="flex-shrink-0 p-3 justify-content-center" style="width: 280px; margin: 0 auto;">
 			<a class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-				<span class="fs-5 fw-semibold">Menú de l'usuari</span>
+				<span class="fs-5 fw-semibold">Menú de l'usuari basic</span>
 			</a>
 			<ul class="list-unstyled ps-0">
       			<li class="mb-1">
@@ -51,22 +71,5 @@
 				</li>
 			</ul>
 		</div>
-		<!-- <h3><b>Menú de l'usuari</b></h3>
-		<p>Visualització dels alumnes: </p>
-		<a href="visualitzarAlumnesBasic.php">Visualitzar alumnes</a><br><br>
-		<p>Tancament de sessió: </p>
-        <p><a href="logout.php">Finalitza la sessió</a></p> -->
-
-        <?php
-			// require('./biblioteca.php');
-			echo "<p>Usuari utilitzant l'agenda: ".$_SESSION['usuari']."</p>";
-			$autoritzat=fAutoritzacio($_SESSION['usuari']);
-			if(!$autoritzat){
-				echo "<p> Tipus d'usuari: Basic </p>";
-			}else{
-				echo "<p> Tipus d'usuari: Administrador </p>";
-			}
-        ?>
-        </label>		
 	</body>
 </html>

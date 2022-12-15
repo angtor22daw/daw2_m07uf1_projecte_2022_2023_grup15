@@ -35,61 +35,81 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Crear Alumnes</title>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
+		<link href="css/sidebars.css" rel="stylesheet">
 	</head>
 	<body>
-		<h3><b>Registre de nous Alumnes</b></h3>
-		<p><b>Indica les dades del nou alumne: </b></p>			
-		<form action="crearAlumne.php" method="POST">			
-			<p>
-				<label>Nom del alumne:</label> 
-				<input type="text" name="nom_nou_alumne" required>
-			</p>
-            <p>
-				<label>Primer cognom:</label> 
-				<input type="text" name="primerCognom_nou_alumne" required>
-			</p>
-            <p>
-				<label>Segon cognom:</label> 
-				<input type="text" name="segonCognom_nou_alumne" required>
-			</p>
-            <p>
-				<label>Nota del M01:</label> 
-				<input type="text" name="nota_M01" required>
-			</p>
-            <p>
-				<label>Nota del M02:</label> 
-				<input type="text" name="nota_M02" required>
-			</p>
-            <p>
-				<label>Nota del M03:</label> 
-				<input type="text" name="nota_M03" required>
-			</p>
-            <p>
-				<label>Nota del M04:</label> 
-				<input type="text" name="nota_M04" required>
-			</p>
-            <p>
-				<label>Nota del M11:</label> 
-				<input type="text" name="nota_M11" required>
-			</p>
-            <p>
-				<label>Nota del M12:</label> 
-				<input type="text" name="nota_M12" required>
-			</p>
-			<input type="submit" value="Enregistra el nou alumne"/>
-		</form>
-		<p><a href="menu_admin.php">Torna al menú</a></p>
-		<!-- <label class="diahora"> -->
+		<nav class="navbar navbar-expand-lg bg-info" background-color="black">
+			<div class="container-fluid">
+				<div class=" collapse navbar-collapse" id="navbarNavDropdown">
+				<div class="card">
+				<h5 class="card-header "></h5>
+					<div class="card-body">
+						<?php
+						echo "<p class='navbar-nav ms-auto'>Usuari: ".$_SESSION['usuari']."</p>";
+						$autoritzat=fAutoritzacio($_SESSION['usuari']);
+						if(!$autoritzat){
+							echo "<p class='navbar-nav ms-auto'> Rol: Basic </p>";
+						}else{
+							echo "<p class='navbar-nav ms-auto'> Rol: Administrador </p>";
+						}
+						?>
+					</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<h5 class="display-6">Registre de nous Alumnes</h5>
+		<div class="card-custom" style="width: 18rem;">
+			<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/1200px-User_icon_2.svg.png"  width="200px">
+			<div class="card-body-custom">
+				<form action="crearAlumne.php" method="POST">
+					<div class="form-floating mb-3 mt-3">
+						<input type="text" class="form-control" name="nom_nou_alumne" required>
+						<label>Nom del alumne</label>
+					</div>
+					<div class="form-floating mb-3 mt-3">
+						<input type="text" class="form-control" name="primerCognom_nou_alumne" required>
+						<label>Primer cognom</label>
+					</div>
+					<div class="form-floating mb-3 mt-3">
+						<input type="text" class="form-control" name="segonCognom_nou_alumne" required>
+						<label>Segon cognom</label>
+					</div>
+					<div class="form-floating mb-3 mt-3">
+						<input type="text" class="form-control" name="nota_M01" required>
+						<label>Nota del M01</label>
+					</div>
+					<div class="form-floating mb-3 mt-3">
+						<input type="text" class="form-control" name="nota_M02" required>
+						<label>Nota del M02</label>
+					</div>
+					<div class="form-floating mb-3 mt-3">
+						<input type="text" class="form-control" name="nota_M03" required>
+						<label>Nota del M03</label>
+					</div>
+					<div class="form-floating mb-3 mt-3">
+						<input type="text" class="form-control" name="nota_M04" required>
+						<label>Nota del M04</label>
+					</div>
+					<div class="form-floating mb-3 mt-3">
+						<input type="text" class="form-control" name="nota_M11" required>
+						<label>Nota del M11</label>
+					</div>
+					<div class="form-floating mb-3 mt-3">
+						<input type="text" class="form-control" name="nota_M12" required>
+						<label>Nota del M12</label>
+					</div>
+					<input type="submit" value="Enregistra el nou alumne" class="btn btn-primary"><br><br>
+					<button id="button-tornar" type="button" class="btn btn-secondary" onclick=window.location.href="menu_admin.php">Torna al menú</button><br><br>
+				</form>
+			</div>
+		</div>	
+		
 		<?php
-			// NOM I TIPUS D USUARI 
-			echo "<p>Usuari utilitzant l'agenda: ".$_SESSION['usuari']."</p>";
-            $autoritzat=fAutoritzacio($_SESSION['usuari']);
-			if(!$autoritzat){
-				echo "<p> Tipus d'usuari: Basic</p>";
-			}else{
-				echo "<p> Tipus d'usuari: Administrador</p>";
-			}
 			if (isset($_SESSION['afegitAlumne'])){
 				if ($_SESSION['afegitAlumne']) echo "<p style='color:red'>L'Usuari ha estat registrat correctament</p>";
 				else{

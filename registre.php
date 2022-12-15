@@ -24,32 +24,60 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Registrarse</title>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
+		<link href="css/sidebars.css" rel="stylesheet">
 	</head>
 	<body>
-		<h3><b>Registre d'usuaris del visualitzador de l'agenda</b></h3>
-		<p><b>Indica les dades de l'usuari a registrar dins de l'aplicació: </b></p>			
-		<form action="registre.php" method="POST">			
-			<p>
-				<label>Nom del nou usuari:</label> 
-				<input type="text" name="nom_nou_usuari" required>
-			</p>
-			<p>
-				<label>Contrasenya del nou usuari:</label> 
-				<input type="password" name="cts_nou_usuari" pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Mínims: 8 caràcters, una majúscula, una minúscula, un número i un caràter especial" required>
-			</p> 
-			<label>Tipus d'usuari de l'aplicació</label><br>
-			<input type="radio" name="tipus_nou_usuari" value=<?php echo USR ?> checked>Usuari de l'aplicació<br>
-			<input type="radio" name="tipus_nou_usuari" value=<?php echo ADMIN ?> >Administrador de l'aplicació<br>
-			<br>
-			<input type="submit" value="Enregistra el nou usuari"/>
-		</form>
-		<p><a href="menu_admin.php">Torna al menú</a></p>
-		<!-- <label class="diahora"> -->
+		<nav class="navbar navbar-expand-lg bg-info" background-color="black">
+			<div class="container-fluid">
+				<div class=" collapse navbar-collapse" id="navbarNavDropdown">
+				<div class="card">
+				<h5 class="card-header "></h5>
+					<div class="card-body">
+						<?php
+						echo "<p class='navbar-nav ms-auto'>Usuari: ".$_SESSION['usuari']."</p>";
+						$autoritzat=fAutoritzacio($_SESSION['usuari']);
+						if(!$autoritzat){
+							echo "<p class='navbar-nav ms-auto'> Rol: Basic </p>";
+						}else{
+							echo "<p class='navbar-nav ms-auto'> Rol: Administrador </p>";
+						}
+						?>
+					</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<h5 class="display-6">Registre d'usuaris</h5>
+		<div class="card-custom" style="width: 18rem;">
+			<img src="https://cdn.icon-icons.com/icons2/2104/PNG/512/manager_icon_129392.png"  width="200px">
+			<div class="card-body-custom">
+				<form action="registre.php" method="POST">
+					<div class="form-floating mb-3 mt-3">
+						<input type="text" class="form-control" name="nom_nou_usuari" required>
+						<label>Nom del nou usuari</label>
+					</div>
+					<div class="form-floating mb-3 mt-3">
+						<input type="password" class="form-control" name="cts_nou_usuari" pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Mínims: 8 caràcters, una majúscula, una minúscula, un número i un caràter especial" requiredrequired>
+						<label>Contrasenya del nou usuari</label>
+					</div>
+					<label><b>Rol de l'usuari</b></label><br><br>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="tipus_nou_usuari" value=<?php echo USR ?> checked>Basic
+						</div>
+						<div class="form-check">
+						<input class="form-check-input" type="radio" name="tipus_nou_usuari" value=<?php echo ADMIN ?> >Administrador
+					</div><br>
+					<input type="submit" value="Enregistra el nou usuari" class="btn btn-primary"><br><br>
+					<button id="button-tornar" type="button" class="btn btn-secondary" onclick=window.location.href="menu_admin.php">Torna al menú</button>
+					<br><br>
+				</form>
+			</div>
+		</div>
 		<?php
-			echo "<p>Usuari utilitzant l'agenda: ".$_SESSION['usuari']."</p>";
-			// date_default_timezone_set('Europe/Andorra');
-			// echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";
 			if (isset($_SESSION['afegit'])){
 				if ($_SESSION['afegit']) echo "<p style='color:red'>L'Usuari ha estat registrat correctament</p>";
 				else{

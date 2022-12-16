@@ -14,12 +14,13 @@
 			header("Location: ./errors/error_autoritzacio.php");
 		}
 	}
-	if ((isset($_POST['ID_alumne']))){		
+	if (isset($_POST['tipusMetode'])){
 		$eliminar=fEliminarAlumne($_POST['ID_alumne']);
 		$_SESSION['eliminar']=$eliminar;
 	}
 	// RETORNA EN 10 SEGONS
-	if (isset($_SESSION['eliminar'])){
+	// if (isset($_SESSION['eliminar'])){
+	if (isset($_POST['tipusMetode'])== "DELETE"){
 		if ($_SESSION['eliminar']);
 		else{
 			header("refresh: 10; url=menu_admin.php"); // Passats 5 segons el navegador demana menu_admin.php i es torna a menu_admin.php.
@@ -64,6 +65,7 @@
 			<img src="http://estudioalfa.com/wp-content/uploads/2012/11/vbulletin_borrar_mensajes_usuario.png"  width="200px">
 			<div class="card-body-custom">
 				<form action="eliminarAlumne.php" method="POST">
+					<input type="hidden" name="tipusMetode" value="DELETE"/>
 					<div class="form-floating mb-3 mt-3">
 						<input type="text" class="form-control" name="ID_alumne" required>
 						<label>ID de l'alumne</label>
@@ -76,10 +78,10 @@
 		</div>	
 		<?php
 			if (isset($_SESSION['eliminar'])){
-				if ($_SESSION['eliminar']) echo "<p style='color:red'>L'alumne ha estat eliminat correctament</p>";
+				if ($_SESSION['eliminar']) echo "<br><p style='color:red' class='text-center'>L'alumne ha estat eliminat correctament</p>";
 				else{
-					echo "<p style='color:red'>L'Usuari no ha estat eliminat</p><br>";
-					echo "<p style='color:red'>Comprova si hi ha algún problema del sistema per poder eliminar usuaris</p><br>";
+					echo "<br><p style='color:red' class='text-center'>L'Usuari no ha estat eliminat</p>";
+					echo "<p style='color:red' class='text-center'>Comprova si hi ha algún problema del sistema per poder eliminar usuaris</p><br>";
 					// header("refresh: 10; url=menu_admin.php"); // Passats 5 segons el navegador demana menu_admin.php i es torna a menu_admin.php.
 				}
 				unset($_SESSION['eliminar']);

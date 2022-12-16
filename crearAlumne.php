@@ -111,10 +111,10 @@
 		
 		<?php
 			if (isset($_SESSION['afegitAlumne'])){
-				if ($_SESSION['afegitAlumne']) echo "<p style='color:red'>L'Usuari ha estat registrat correctament</p>";
+				if ($_SESSION['afegitAlumne']) echo "<br><p style='color:red' class='text-center'>L'Alumne ha estat registrat correctament</p>";
 				else{
-					echo "<p style='color:red'>L'Usuari no ha estat registrat</p><br>";
-					echo "<p style='color:red'>Comprova si hi ha algún problema del sistema per poder enregistrar nous usuaris</p><br>";
+					echo "<br><p style='color:red' class='text-center'>L'Alumne no ha estat registrat</p>";
+					echo "<p style='color:red' class='text-center'>Comprova si hi ha algún problema del sistema per poder enregistrar nous alumnes</p><br>";
 					//header("refresh: 10; url=menu_admin.php");
 				}
 				unset($_SESSION['afegitAlumne']);

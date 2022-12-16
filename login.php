@@ -12,19 +12,18 @@
 			} else {
 				header("Location: menu_basic.php");		
 			}
+		}
 
-						
-		}		
 		if (!isset($_SESSION['usuari'])){
 			header("Location: ./errors/error_login.php");
-		}					
-	}		
+		}	
+	}
 ?>
 <!DOCTYPE html>
 <html lang="ca">
 	<head>
 		<meta charset="utf-8">
-		<title>Visualitzador de l'aplicació</title>
+		<title>Iniciar Sessió</title>
 		<!-- CSS only -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/estils.css">

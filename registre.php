@@ -79,10 +79,10 @@
 		</div>
 		<?php
 			if (isset($_SESSION['afegit'])){
-				if ($_SESSION['afegit']) echo "<p style='color:red'>L'Usuari ha estat registrat correctament</p>";
+				if ($_SESSION['afegit']) echo "<br><p style='color:red' class='text-center'>L'Usuari ha estat registrat correctament</p>";
 				else{
-					echo "L'Usuari no ha estat registrat<br>";
-					echo "Comprova si hi ha algún problema del sistema per poder enregistrar nous usuaris<br>";
+					echo "<br><p style='color:red' class='text-center'>L'Usuari no ha estat registrat</p>";
+					echo "<p style='color:red' class='text-center'>Comprova si hi ha algún problema del sistema per poder enregistrar nous usuaris</p>";
 				}
 				unset($_SESSION['afegit']);
 			} 

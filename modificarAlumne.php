@@ -19,7 +19,7 @@
 		$_SESSION['modificat']=$modificat;
 	}
 	// RETORNA EN 10 SEGONS
-	if (isset($_SESSION['modificat'])){
+	if (isset($_POST['tipusMetode']) == "PUT"){
 		if ($_SESSION['modificat']);
 		else{
 			header("refresh: 10; url=menu_admin.php"); // Passats 5 segons el navegador demana menu_admin.php i es torna a menu_admin.php.
@@ -64,6 +64,7 @@
 			<img src="https://cdn-icons-png.flaticon.com/512/38/38905.png?w=360"  width="200px">
 			<div class="card-body-custom">
 				<form action="modificarAlumne.php" method="POST">
+					<input type="hidden" name="tipusMetode" value="PUT"/>
 					<div class="form-floating mb-3 mt-3">
 						<input type="text" class="form-control" name="ID_alumne" required>
 						<label>ID del alumne</label>
@@ -89,10 +90,10 @@
 		</div>
         <?php
 			if (isset($_SESSION['modificat'])){
-				if ($_SESSION['modificat']) echo "<p style='color:red'>L'Usuari ha estat modificat correctament</p>";
+				if ($_SESSION['modificat']) echo "<p style='color:red'>L'Alumne ha estat modificat correctament</p>";
 				else{
-					echo "<p style='color:red'>L'Usuari no ha estat registrat</p><br>";
-					echo "<p style='color:red'>Comprova si hi ha algún problema del sistema per poder enregistrar nous usuaris</p><br>";
+					echo "<br><p style='color:red' class='text-center'>L'Alumne no ha estat registrat</p>";
+					echo "<p style='color:red' class='text-center'>Comprova si hi ha algún problema del sistema per poder modificar alumnes</p><br>";
 				}
 				unset($_SESSION['modificat']);
 			} 

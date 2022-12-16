@@ -1,6 +1,6 @@
 <?php
-	session_start();
 	require("biblioteca.php");
+	session_start();
 	if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
 		header("Location: ./errors/logout_expira_sessio.php");
 	}

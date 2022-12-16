@@ -12,6 +12,9 @@
 	function fLlegeixFitxer($nomFitxer){
 		if ($fp=fopen($nomFitxer,"r")) {
 			$midaFitxer=filesize($nomFitxer);
+			if ($midaFitxer==0) {
+				return $dades=false;
+			}
 			$dades = explode(PHP_EOL, fread($fp,$midaFitxer));
 			fclose($fp);
 		}

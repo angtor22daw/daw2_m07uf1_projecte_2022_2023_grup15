@@ -82,7 +82,12 @@
 
 	function fActualitzaAlumnes($nom_nou_alumne,$primerCognom_nou_alumne,$segonCognom_nou_alumne,$nota_M01,$nota_M02,$nota_M03,$nota_M04,$nota_M11,$nota_M12){
 		$alumnes = fLlegeixFitxer(FITXER_ALUMNES);
-		$identificador=sprintf("%02d",count($alumnes)+1);
+		if ($alumnes == false) {
+			$identificador = sprintf("%02d",1);
+		}else{
+			$identificador=sprintf("%02d",count($alumnes)+1);
+		}
+		
 		if($identificador>25){
 			return $afegitAlumne=false;
 		}
@@ -136,6 +141,9 @@
 			return $eliminat=false;
 		}
 		$alumnes = fLlegeixFitxer(FITXER_ALUMNES);
+		if ($alumnes == null) {
+			return $eliminat=false;
+		}
 		$llistaAlumnes = array();
 		foreach ($alumnes as $alumne) {
 			$dadesAlumne = explode(":", $alumne);
@@ -145,6 +153,11 @@
 		}
 
 		$llistaAlumnes = implode(PHP_EOL, $llistaAlumnes);
+		if ($llistaAlumnes == null) {
+			$fp=fopen(FITXER_ALUMNES,"w");
+			fwrite($fp,$llistaAlumnes);
+			return $eliminat=true;
+		}
 		if ($fp=fopen(FITXER_ALUMNES,"w")) {
 			if (fwrite($fp,$llistaAlumnes)){
 				$eliminat=true;
